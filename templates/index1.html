@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> RegexMatcher Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center; /* Centering titles */
+            color: #555;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .matches {
+            margin-top: 20px;
+            text-align: center; /* Centering matches */
+        }
+        .matches ul {
+            list-style: none;
+            padding: 0;
+        }
+        .matches ul li {
+            margin-bottom: 5px;
+            color: #fff; /* Text color */
+            background-color: #4CAF50; /* Background color */
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block; /* Display matches inline */
+        }
+        img {
+            width: 100px;
+            height: 35px;
+            position: relative;
+            top: 10px; /* Move the image 10 pixels down */
+        }
+    </style>
+</head>
+<body>
+    <h1><img src="{{ url_for('static', filename='images/image1.png') }}" alt="Image 1">Regex Matcher</h1>
+    <form action="/match" method="POST">
+        <label for="test_string">Test String:</label>
+        <input type="text" id="test_string" name="test_string">
+        <label for="regex_pattern">Regex Pattern:</label>
+        <input type="text" id="regex_pattern" name="regex_pattern">
+        <input type="submit" value="Match">
+    </form>
+    </div>
+    {% if matches %}
+        <div class="container">
+            <div class="matches">
+                <h1>Matches</h1>
+                <p>Test String: {{ test_string }}</p>
+                <p>Regex Pattern: {{ regex_pattern }}</p>
+                <ul>
+                    {% for match in matches %}
+                        <li>{{ match }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="/">Back</a>
+            </div>
+        </div>
+    {% endif %}
+    <h2><img src="{{ url_for('static', filename='images/image2.png') }}" alt="Image 1">Email Verification</h2>
+    <form action="/verify_email" method="POST">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+        <input type="submit" value="Verify Email">
+    </form>
+</body>
+</html>
